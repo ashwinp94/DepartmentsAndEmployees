@@ -146,6 +146,10 @@ namespace DapperDepartments
         /// <param name="departments">Department data for the report</param>
         public static void PrintDepartmentReport(string title, List<Department> departments)
         {
+            foreach(Department dept in departments)
+            {
+                Console.WriteLine($"{dept.Id}: {dept.DeptName}");
+            }
             /*
              * TODO: Complete this method
              *  For example a report entitled, "All Departments" should look like this:
@@ -169,6 +173,17 @@ namespace DapperDepartments
         /// <param name="employees">Employee data for the report</param>
         public static void PrintEmployeeReport(string title, List<Employee> employees)
         {
+            foreach (Employee emp in employees)
+            {
+                if (emp.Department != null)
+                {
+                    Console.WriteLine($"{emp.Id}: {emp.FirstName} {emp.LastName} DEPT: {emp.Department.DeptName}");
+                }
+                else
+                {
+                    Console.WriteLine($"{emp.Id}: {emp.FirstName} {emp.LastName}");
+                }
+            }
             /*
              * TODO: Complete this method
              *  For example a report entitled, "All Employees", should look like this:
