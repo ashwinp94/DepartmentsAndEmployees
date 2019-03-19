@@ -350,7 +350,11 @@ namespace DapperDepartments.Data
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     // More string interpolation
-                    cmd.CommandText = $"INSERT INTO Employee (FirstName, LastName, DepartmentId) Values ('{employee.FirstName}', '{employee.LastName}', {employee.DepartmentId})";
+                    cmd.CommandText = $"INSERT INTO Employee (FirstName, LastName, DepartmentId) Values (@firstName, @lastName, @departmentId)";
+                    cmd.Parameters.Add(new SqlParameter("@firstName", employee.FirstName));
+                    cmd.Parameters.Add(new SqlParameter("@lastName", employee.LastName));
+                    cmd.Parameters.Add(new SqlParameter("@departmentId", employee.DepartmentId));
+
                     cmd.ExecuteNonQuery();
                 }
             }
